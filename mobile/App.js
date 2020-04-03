@@ -1,19 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-export default function App() {
+import StepUm from './src/pages/StepUm';
+import StepDois from './src/pages/StepDois';
+import StepTres from './src/pages/StepTres';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{headerShown: false}}
+      >
+        <Stack.Screen 
+          name="StepUm" 
+          component={StepUm}
+          options={{ 
+            title: 'Step 1'
+          }}
+        />
+        <Stack.Screen 
+          name="StepDois" 
+          component={StepDois}
+          options={{ title: 'Step 2' }}
+        />
+        <Stack.Screen 
+          name="StepTres" 
+          component={StepTres}
+          options={{ title: 'Step 3' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
